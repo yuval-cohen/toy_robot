@@ -67,7 +67,7 @@ namespace command_parser {
 					uint32_t y;
 					if (ParseU32Numeric(command_str, current_parse_idx, &y)) {
 						Face face;
-						if (ParseFaceString(command_str, current_parse_idx, &face)) {
+						if (ParseFaceString(command_str, command_str_len, current_parse_idx, &face)) {
 							command->id = CommandId::kPlace;
 							command->params_type = CommandParamsType::kTwoNumericOneFace;
 							command->params.two_u32_numeric_one_face_param.x = x;
