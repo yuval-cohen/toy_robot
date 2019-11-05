@@ -16,6 +16,7 @@ namespace toy_robot {
 	* @class ToyRobot
 	* Toy Robot class
 	*/
+	template <uint32_t X, uint32_t Y>
 	class ToyRobot : public ToyRobotBase {
 	public:
 		/**
@@ -30,6 +31,14 @@ namespace toy_robot {
 		~ToyRobot() = default;
 
 		bool Place(uint32_t x, uint32_t y, Face face) override {
+			if (x < X && y < Y) {
+				x_ = x;
+				y_ = y;
+				face_ = face;
+
+				placed_ = true;
+				return true;
+			}
 			return false;
 		}
 

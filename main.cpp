@@ -10,7 +10,7 @@ using toy_robot::ToyRobot;
 int main() {
 
 	CommandParser command_parser;
-	ToyRobot tory_robot;
+	ToyRobot<5,5> toy_robot;
 
 	cout << "Toy Robot" << endl;
 
