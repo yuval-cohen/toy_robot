@@ -100,6 +100,41 @@ void test__3() {
 	}
 }
 
+/*
+* PLACE 5, 4, EAST
+* MOVE
+* MOVE
+* LEFT
+* MOVE
+* REPORT
+* Output : 3, 3, NORTH
+*/
+void test__4() {
+	ToyRobot<5, 5> toy_robot;
+
+	cout << "PLACE 5, 4, EAST" << endl;
+	toy_robot.Place(5, 4, Face::kEast);
+	cout << "MOVE" << endl;
+	toy_robot.Move();
+	cout << "MOVE" << endl;
+	toy_robot.Move();
+	cout << "LEFT" << endl;
+	toy_robot.Left();
+	cout << "MOVE" << endl;
+	toy_robot.Move();
+	cout << "REPORT" << endl;
+	uint32_t x;
+	uint32_t y;
+	Face face;
+	if (!toy_robot.Report(&x, &y, &face)) {
+		cout << "Robot Not Placed" << endl;
+		cout << "Test #4 [OK]\n\n";
+	}
+	else {
+		cout << "Test #4 [FAIL]\n\n";
+	}
+}
+
 int main() {
 
 	cout << endl << "Toy Robot Unit Tests" << endl;
@@ -107,6 +142,7 @@ int main() {
 	test__1();
 	test__2();
 	test__3();
+	test__4();
 
 	return 0;
 }
