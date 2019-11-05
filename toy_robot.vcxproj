@@ -118,6 +118,7 @@
     <ClInclude Include="command_defs.hpp" />
     <ClInclude Include="command_parser.hpp" />
     <ClInclude Include="command_parser_base.hpp" />
+    <ClInclude Include="command_str.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="command_parser.cpp" />
