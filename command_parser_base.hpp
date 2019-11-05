@@ -11,6 +11,7 @@
 #include "command_defs.hpp"
 
 namespace toy_robot {
+namespace command_parser {
 
 	/**
 	* @class CommandParserBase
@@ -20,4 +21,5 @@ namespace toy_robot {
 		virtual bool ParseCommand(const char *command_str, Command *command) = 0;
 	};
 
+}  // namespace command_parser
 }  // namespace toy_robot

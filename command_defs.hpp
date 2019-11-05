@@ -73,15 +73,14 @@ namespace command_parser {
 	*/
 	struct Command {
 		/*
-		* @brief c'tor for no params command
-		* execution type defaults to Execute
+		* @brief c'tor w/ command id defaults to none
 		*/
 		explicit Command(CommandId id_ = CommandId::kNone) :
 			id{ id_ }, params_type{ CommandParamsType::kNone }, params{}
 		{}
 
 		/*
-		* @brief c'tor for single numeric command
+		* @brief c'tor for two numeric command and one face
 		*/
 		Command(CommandId id_, uint32_t x_, uint32_t y_, Face face_) :
 			id{ id_ }, params_type{ CommandParamsType::kTwoNumericOneFace}
