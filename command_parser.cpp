@@ -58,7 +58,7 @@ namespace command_parser {
 			auto right_command_str_len = strlen(strings::kRightCommandStr);
 			auto report_command_str_len = strlen(strings::kReportCommandStr);
 
-			if (strncmp(command_str + *current_parse_idx, strings::kPlaceCommandStr,
+			if (_strnicmp(command_str + *current_parse_idx, strings::kPlaceCommandStr,
 				place_command_str_len) == 0) {
 				*current_parse_idx += place_command_str_len;
 
@@ -80,7 +80,7 @@ namespace command_parser {
 					}
 				}
 			}
-			else if (strncmp(command_str + *current_parse_idx, strings::kMoveCommandStr,
+			else if (_strnicmp(command_str + *current_parse_idx, strings::kMoveCommandStr,
 				move_command_str_len) == 0) {
 				*current_parse_idx += move_command_str_len;
 
@@ -89,7 +89,7 @@ namespace command_parser {
 
 				return true;
 			}
-			else if (strncmp(command_str + *current_parse_idx, strings::kLeftCommandStr,
+			else if (_strnicmp(command_str + *current_parse_idx, strings::kLeftCommandStr,
 				left_command_str_len) == 0) {
 				*current_parse_idx += left_command_str_len;
 
@@ -98,7 +98,7 @@ namespace command_parser {
 
 				return true;
 			}
-			else if (strncmp(command_str + *current_parse_idx, strings::kRightCommandStr,
+			else if (_strnicmp(command_str + *current_parse_idx, strings::kRightCommandStr,
 				right_command_str_len) == 0) {
 				*current_parse_idx += right_command_str_len;
 
@@ -107,7 +107,7 @@ namespace command_parser {
 
 				return true;
 			}
-			else if (strncmp(command_str + *current_parse_idx, strings::kReportCommandStr,
+			else if (_strnicmp(command_str + *current_parse_idx, strings::kReportCommandStr,
 				report_command_str_len) == 0) {
 				*current_parse_idx += report_command_str_len;
 
@@ -158,22 +158,22 @@ namespace command_parser {
 			auto face_east_str_len = strlen(strings::kFaceEastStr);
 			auto face_west_str_len = strlen(strings::kFaceWestStr);
 
-			if (strncmp(command_str + *current_parse_idx, strings::kFaceNorthStr, face_north_str_len) == 0) {
+			if (_strnicmp(command_str + *current_parse_idx, strings::kFaceNorthStr, face_north_str_len) == 0) {
 				*current_parse_idx += face_north_str_len;
 				*face = Face::kNorth;
 				return true;
 			}
-			else if (strncmp(command_str + *current_parse_idx, strings::kFaceSouthStr, face_south_str_len) == 0) {
+			else if (_strnicmp(command_str + *current_parse_idx, strings::kFaceSouthStr, face_south_str_len) == 0) {
 				*current_parse_idx += face_south_str_len;
 				*face = Face::kSouth;
 				return true;
 			}
-			else if (strncmp(command_str + *current_parse_idx, strings::kFaceEastStr, face_east_str_len) == 0) {
+			else if (_strnicmp(command_str + *current_parse_idx, strings::kFaceEastStr, face_east_str_len) == 0) {
 				*current_parse_idx += face_east_str_len;
 				*face = Face::kEast;
 				return true;
 			}
-			else if (strncmp(command_str + *current_parse_idx, strings::kFaceWestStr, face_west_str_len) == 0) {
+			else if (_strnicmp(command_str + *current_parse_idx, strings::kFaceWestStr, face_west_str_len) == 0) {
 				*current_parse_idx += face_west_str_len;
 				*face = Face::kWest;
 				return true;
