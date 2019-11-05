@@ -95,8 +95,39 @@ namespace toy_robot {
 			return true;
 		}
 
+		/**
+		* Left
+		* @brief rotate the robot 90 degrees to the left (without changing the position of the robot)
+		* @return false - robot not placed, true - otherwise
+		*/
 		bool Left() override {
-			return false;
+			if (!placed_) {
+				return false;
+			}
+
+			switch (face_) {
+			case Face::kNorth:
+				face_ = Face::kWest;
+				break;
+
+			case Face::kSouth:
+				face_ = Face::kEast;
+				break;
+
+			case Face::kEast:
+				face_ = Face::kNorth;
+				break;
+
+			case Face::kWest:
+				face_ = Face::kSouth;
+				break;
+
+			default:
+				placed_ = false;
+				return false;
+			}
+
+			return true;
 		}
 
 		bool Right() override {
