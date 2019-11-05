@@ -165,8 +165,23 @@ namespace toy_robot {
 			return true;
 		}
 
+		/**
+		* Report
+		* @brief report the x, y and face of the robot
+		* @param output x coordinate
+		* @param output y coordinate
+		* @param output face north/south/east/west
+		* @return false - robot not placed, true - otherwise
+		*/
 		bool Report(uint32_t *x, uint32_t *y, Face *face) override {
-			return false;
+			if (!placed_) {
+				return false;
+			}
+			*x = x_;
+			*y = y_;
+			*face = face_;
+
+			return true;
 		}
 
 	private:
