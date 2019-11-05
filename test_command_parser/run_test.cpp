@@ -1,3 +1,11 @@
+//!
+//! @file run_test.cpp
+//!
+//! @brief command parser unit tests file
+//!
+//! @copyright Yuval Cohen 2019
+//!
+
 #include <iostream>
 #include "..\command_parser.hpp"
 
@@ -7,7 +15,7 @@ using toy_robot::command_parser::CommandParser;
 using toy_robot::command_parser::Command;
 using toy_robot::command_parser::CommandId;
 using toy_robot::command_parser::CommandParamsType;
-using toy_robot::command_parser::Face;
+using toy_robot::Face;
 
 void test__PLACE_0_0_NORTH() {
 	CommandParser command_parser;

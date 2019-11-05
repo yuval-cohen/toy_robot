@@ -11,6 +11,17 @@
 #include  <cstdint>
 
 namespace toy_robot {
+
+	/*
+	* @brief Face type
+	*/
+	enum class Face : uint8_t {
+		kNorth,
+		kSouth,
+		kEast,
+		kWest
+	};
+
 namespace command_parser {
 
 	/*
@@ -32,17 +43,6 @@ namespace command_parser {
 		kNone,  // no params
 		kTwoNumericOneFace
 	};
-
-	/*
-	* @brief Face type
-	*/
-	enum class Face : uint8_t {
-		kNorth,
-		kSouth,
-		kEast,
-		kWest
-	};
-
 
 	/*
 	* @brief structure for no Parameters

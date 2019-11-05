@@ -18,6 +18,7 @@ namespace command_parser {
 	* Command Parser abstract base class
 	*/
 	class CommandParserBase {
+	public:
 		virtual bool ParseCommand(const char *command_str, Command *command) = 0;
 	};
 

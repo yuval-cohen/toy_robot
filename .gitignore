@@ -64,3 +64,4 @@ test_command_parser/x64/Debug/command_parser.obj
 test_command_parser/test_command_parser.vcxproj.user
 test_command_parser/test_command_parser.vcxproj.filters
 test_command_parser/test_command_parser.vcxproj
+.vs/toy_robot/v15/ipch/AutoPCH/cfdd3e8c6b926b02/TOY_ROBOT_BASE.ipch

@@ -119,6 +119,7 @@
     <ClInclude Include="command_parser.hpp" />
     <ClInclude Include="command_parser_base.hpp" />
     <ClInclude Include="command_str.hpp" />
+    <ClInclude Include="toy_robot_base.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="command_parser.cpp" />
