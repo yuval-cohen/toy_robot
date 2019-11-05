@@ -30,7 +30,7 @@ namespace command_parser {
 				//  (3) skip any trailing spaces (space or tab)
 				SkipSpaces(command_str, command_str_len, &current_parse_idx);
 
-				parse_ok = (current_parse_idx == command_str_len - 1);
+				parse_ok = (current_parse_idx == command_str_len);
 			}
 		}
 
@@ -41,7 +41,7 @@ namespace command_parser {
 		size_t cmd_str_len, size_t *current_parse_idx) {
 		while (*current_parse_idx < cmd_str_len) {
 			if (command_str[*current_parse_idx] == ' ' || command_str[*current_parse_idx] == '\t') {
-				*current_parse_idx++;
+				(*current_parse_idx)++;
 			}
 			else {
 				break;
@@ -63,11 +63,12 @@ namespace command_parser {
 				*current_parse_idx += place_command_str_len;
 
 				uint32_t x;
-				if (ParseU32Numeric(command_str, current_parse_idx, &x)) {
+				if (ParseU32Numeric(command_str, current_parse_idx, &x) && ParseParamSeparator(command_str, command_str_len, current_parse_idx)) {
 					uint32_t y;
-					if (ParseU32Numeric(command_str, current_parse_idx, &y)) {
+					if (ParseU32Numeric(command_str, current_parse_idx, &y) && ParseParamSeparator(command_str, command_str_len, current_parse_idx)) {
 						Face face;
-						if (ParseFaceString(command_str, command_str_len, current_parse_idx, &face)) {
+						if (SkipSpaces(command_str, command_str_len, current_parse_idx) &&
+							ParseFaceString(command_str, command_str_len, current_parse_idx, &face)) {
 							command->id = CommandId::kPlace;
 							command->params_type = CommandParamsType::kTwoNumericOneFace;
 							command->params.two_u32_numeric_one_face_param.x = x;
@@ -131,6 +132,19 @@ namespace command_parser {
 					*current_parse_idx += (end_str)-(command_str + *current_parse_idx);
 					return true;
 				}
+			}
+		}
+
+		return false;
+	}
+
+	bool CommandParser::ParseParamSeparator(const char *command_str, size_t command_str_len, size_t *current_parse_idx) {
+		auto start_str = command_str + (*current_parse_idx);
+		if (start_str) {
+			auto end_str = strstr(start_str, strings::kParamsSeparator);
+			if (end_str) {
+				*current_parse_idx += (end_str)-(command_str + *current_parse_idx) + 1;
+				return true;
 			}
 		}
 
