@@ -9,6 +9,7 @@
 #include "command_str.hpp"
 #include "command_parser.hpp"
 #include <cstring>
+#include <cstdlib>
 
 namespace toy_robot {
 namespace command_parser {
@@ -22,7 +23,7 @@ namespace command_parser {
 
 		// (2) parse the actual command
 		if (parse_ok) {
-			parse_ok = ParseCommand(
+			parse_ok = ParseCommandStrWithParams(
 				command_str, command_str_len, &current_parse_idx, command);
 
 			if (parse_ok) {
@@ -49,7 +50,7 @@ namespace command_parser {
 		return true;
 	}
 
-	bool CommandParser::ParseCommand(const char *command_str, size_t command_str_len, size_t *current_parse_idx, Command *command) {
+	bool CommandParser::ParseCommandStrWithParams(const char *command_str, size_t command_str_len, size_t *current_parse_idx, Command *command) {
 		if (*current_parse_idx < command_str_len) {
 			auto place_command_str_len = strlen(strings::kPlaceCommandStr);
 			auto move_command_str_len = strlen(strings::kMoveCommandStr);
@@ -61,14 +62,22 @@ namespace command_parser {
 				place_command_str_len) == 0) {
 				*current_parse_idx += place_command_str_len;
 
-				// TODO: parse parameters
-				command->id = CommandId::kPlace;
-				command->params_type = CommandParamsType::kTwoNumericOneFace;
-				command->params.two_u32_numeric_one_face_param.x = 0;
-				command->params.two_u32_numeric_one_face_param.y = 0;
-				command->params.two_u32_numeric_one_face_param.face = Face::kNorth;
+				uint32_t x;
+				if (ParseU32Numeric(command_str, current_parse_idx, &x)) {
+					uint32_t y;
+					if (ParseU32Numeric(command_str, current_parse_idx, &y)) {
+						Face face;
+						if (ParseFaceString(command_str, current_parse_idx, &face)) {
+							command->id = CommandId::kPlace;
+							command->params_type = CommandParamsType::kTwoNumericOneFace;
+							command->params.two_u32_numeric_one_face_param.x = x;
+							command->params.two_u32_numeric_one_face_param.y = y;
+							command->params.two_u32_numeric_one_face_param.face = face;
 
-				return true;
+							return true;
+						}
+					}
+				}
 			}
 			else if (strncmp(command_str + *current_parse_idx, strings::kMoveCommandStr,
 				move_command_str_len) == 0) {
@@ -108,6 +117,41 @@ namespace command_parser {
 			}
 		}
 
+		return false;
+	}
+
+	bool CommandParser::ParseU32Numeric(const char *command_str, size_t *current_parse_idx, uint32_t *n) {
+		auto start_str = command_str + (*current_parse_idx);
+		if (start_str) {
+			auto end_str = strstr(start_str, strings::kParamsSeparator);
+			if (end_str) {
+				uint32_t x;
+				if (StrToU32(start_str, &x)) {
+					*n = x;
+					*current_parse_idx += (end_str)-(command_str + *current_parse_idx);
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	bool CommandParser::StrToU32(const char *start, uint32_t *u32) {
+		if (start) {
+			char *str_end;
+			constexpr int kBaseDecimal{10};
+			*u32 = strtoul(start, &str_end, kBaseDecimal);
+			if (*u32 != 0 || start != str_end) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	bool CommandParser::ParseFaceString(const char *command_str, size_t *current_parse_idx, Face *face) {
+		// TODO
 		return false;
 	}
 

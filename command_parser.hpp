@@ -39,7 +39,10 @@ namespace command_parser {
 
 			private:
 				bool SkipSpaces(const char *command_str, size_t cmd_str_len, size_t *current_parse_idx);
-				bool ParseCommand(const char *command_str, size_t command_str_len, size_t *current_parse_idx, Command *command);
+				bool ParseCommandStrWithParams(const char *command_str, size_t command_str_len, size_t *current_parse_idx, Command *command);
+				bool ParseU32Numeric(const char *command_str, size_t *current_parse_idx, uint32_t *n);
+				bool ParseFaceString(const char *command_str, size_t *current_parse_idx, Face *face);
+				bool StrToU32(const char *start, uint32_t *u32);
 			};
 
 }  // namespace command_parser
