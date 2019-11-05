@@ -137,12 +137,31 @@ namespace command_parser {
 		return false;
 	}
 
-	bool CommandParser::StrToU32(const char *start, uint32_t *u32) {
-		if (start) {
-			char *str_end;
-			constexpr int kBaseDecimal{10};
-			*u32 = strtoul(start, &str_end, kBaseDecimal);
-			if (*u32 != 0 || start != str_end) {
+	bool CommandParser::ParseFaceString(const char *command_str, size_t command_str_len, size_t *current_parse_idx, Face *face) {
+		if (*current_parse_idx < command_str_len) {
+			auto face_north_str_len = strlen(strings::kFaceNorthStr);
+			auto face_south_str_len = strlen(strings::kFaceSouthStr);
+			auto face_east_str_len = strlen(strings::kFaceEastStr);
+			auto face_west_str_len = strlen(strings::kFaceWestStr);
+
+			if (strncmp(command_str + *current_parse_idx, strings::kFaceNorthStr, face_north_str_len) == 0) {
+				*current_parse_idx += face_north_str_len;
+				*face = Face::kNorth;
+				return true;
+			}
+			else if (strncmp(command_str + *current_parse_idx, strings::kFaceSouthStr, face_south_str_len) == 0) {
+				*current_parse_idx += face_south_str_len;
+				*face = Face::kSouth;
+				return true;
+			}
+			else if (strncmp(command_str + *current_parse_idx, strings::kFaceEastStr, face_east_str_len) == 0) {
+				*current_parse_idx += face_east_str_len;
+				*face = Face::kEast;
+				return true;
+			}
+			else if (strncmp(command_str + *current_parse_idx, strings::kFaceWestStr, face_west_str_len) == 0) {
+				*current_parse_idx += face_west_str_len;
+				*face = Face::kWest;
 				return true;
 			}
 		}
@@ -150,8 +169,16 @@ namespace command_parser {
 		return false;
 	}
 
-	bool CommandParser::ParseFaceString(const char *command_str, size_t *current_parse_idx, Face *face) {
-		// TODO
+	bool CommandParser::StrToU32(const char *start, uint32_t *u32) {
+		if (start) {
+			char *str_end;
+			constexpr int kBaseDecimal{ 10 };
+			*u32 = strtoul(start, &str_end, kBaseDecimal);
+			if (*u32 != 0 || start != str_end) {
+				return true;
+			}
+		}
+
 		return false;
 	}
 
