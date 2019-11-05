@@ -1,4 +1,4 @@
-# toy_robot
+# Toy Robot
 This repository compiled and run on windows with Microsoft Visual C++ 2017:
 - Microsoft Visual Studio Community 2017 
 - Version 15.6.6
