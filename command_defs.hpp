@@ -8,20 +8,10 @@
 
 #pragma once
 
-#include  <cstdint>
+#include <cstdint>
+#include "face.hpp"
 
 namespace toy_robot {
-
-	/*
-	* @brief Face type
-	*/
-	enum class Face : uint8_t {
-		kNorth,
-		kSouth,
-		kEast,
-		kWest
-	};
-
 namespace command_parser {
 
 	/*

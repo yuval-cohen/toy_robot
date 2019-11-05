@@ -8,7 +8,9 @@
 
 #pragma once
 
+#include "command_defs.hpp"
 #include "command_parser_base.hpp"
+
 
 namespace toy_robot {
 namespace command_parser {

@@ -8,7 +8,7 @@
 
 #pragma once
 #include  <cstdint>
-#include "command_defs.hpp"
+#include "face.hpp"
 
 namespace toy_robot {
 
