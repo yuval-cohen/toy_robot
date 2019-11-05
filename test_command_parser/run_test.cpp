@@ -184,10 +184,7 @@ void test__REPORT() {
 
 int main() {
 
-	cout << endl << "Command Parser Unit Test" << endl;
-
-	CommandParser command_parser;
-	Command command;
+	cout << endl << "Command Parser Unit Tests" << endl;
 
 	test__PLACE_0_0_NORTH();
 	test__place_0_0_north();
