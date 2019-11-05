@@ -35,11 +35,11 @@ namespace command_parser {
 				* @param output command data
 				* @return true - command successfully parsed; false - otherwise
 				*/
-				bool ParseCommand(const char *command_str, Command *command) override {
-					return false;
-				}
+				bool ParseCommand(const char *command_str, Command *command) override;
 
 			private:
+				bool SkipSpaces(const char *command_str, size_t cmd_str_len, size_t *current_parse_idx);
+				bool ParseCommand(const char *command_str, size_t command_str_len, size_t *current_parse_idx, Command *command);
 			};
 
 }  // namespace command_parser

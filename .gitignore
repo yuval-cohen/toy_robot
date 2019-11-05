@@ -37,3 +37,7 @@ x64/Debug/toy_robot.exe
 x64/Debug/main.obj
 .vs/toy_robot/v15/ipch/AutoPCH/d77927f748f5974e/COMMAND_PARSER.ipch
 .vs/toy_robot/v15/ipch/AutoPCH/14496d4f29aea94c/COMMAND_PARSER_BASE.ipch
+x64/Debug/toy_robot.Build.CppClean.log
+x64/Debug/command_parser.obj
+.vs/toy_robot/v15/ipch/AutoPCH/2b2e12a311ae9319/MAIN.ipch
+.vs/toy_robot/v15/ipch/AutoPCH/1820612225d33c8d/COMMAND_PARSER.ipch
